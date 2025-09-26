@@ -1,6 +1,7 @@
 import { GalleryVerticalEnd } from "lucide-react"
 
-import { LoginForm } from "@/components/login-form"
+import { AuthPanel } from "@/components/auth-panel"
+import Image from "next/image"
 
 export default function LoginPage() {
   return (
@@ -15,14 +16,16 @@ export default function LoginPage() {
           </a>
         </div>
         <div className="flex flex-1 items-center justify-center">
-          <div className="w-full max-w-xs">
-            <LoginForm />
+            <div className="w-full max-w-xs">
+            <AuthPanel />
           </div>
         </div>
       </div>
       <div className="bg-muted relative hidden lg:block">
-        <img
+        <Image
           src="/placeholder.svg"
+          width={1920}
+          height={1080}
           alt="Image"
           className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
         />

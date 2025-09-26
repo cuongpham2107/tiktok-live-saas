@@ -1,12 +1,19 @@
+"use client"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { signIn } from "next-auth/react"
+import { useSession } from "next-auth/react"
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
+  const { data: session } = useSession()
+
+  console.log(session)
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
@@ -18,7 +25,7 @@ export function LoginForm({
       <div className="grid gap-6">
         <div className="grid gap-3">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="m@example.com" required />
+          <Input id="email" type="email" placeholder="m@example.com" />
         </div>
         <div className="grid gap-3">
           <div className="flex items-center">
@@ -48,6 +55,31 @@ export function LoginForm({
             />
           </svg>
           Login with GitHub
+        </Button>
+        <Button variant="outline" className="w-full" onClick={() => signIn("google")}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 533.5 544.3"
+            className="mr-2 h-4 w-4"
+          >
+            <path
+              d="M533.5 278.4c0-17.4-1.5-34.1-4.7-50.4H272v95.5h146.9c-6.3 34-25 62.8-53.4 82v68h86.2c50.4-46.4 81.8-114.7 81.8-195.1z"
+              fill="#4285F4"
+            />
+            <path
+              d="M272 544.3c72.6 0 133.6-24 178.1-64.9l-86.2-68c-24 16-54.6 25.4-91.9 25.4-70.6 0-130.4-47.7-151.8-111.7H32.1v70.1c44.5 88.2 134.7 149.1 239.9 149.1z"
+              fill="#34A853"
+            />
+            <path
+              d="M120.2 324.1c-11.4-34-11.4-70.6 0-104.6V150H32.1c-38.3 75.9-38.3 166.3 0 242.2l88.1-68.1z"
+              fill="#FBBC05"
+            />
+            <path
+              d="M272 107.7c39.5-.6 77.2 14.1 106 40.8l79.6-79.6C405.9 24.3 344.9 0 272 0 166.8 0 76.6 60.9 32.1 150l88.1 70.1c21.4-64 81.2-111.7 151.8-112.4z"
+              fill="#EA4335"
+            />
+          </svg>
+          Login with Google
         </Button>
       </div>
       <div className="text-center text-sm">
